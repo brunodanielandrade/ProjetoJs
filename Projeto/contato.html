@@ -1,0 +1,55 @@
+<script src="js/jquery-3.6.4.min.js"></script>
+<script src="js/api.js"></script>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens Recebidas</title>
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+</head>
+<body>
+    <h1>Mensagens Recebidas</h1>
+
+    <!-- Tabela para exibir as mensagens -->
+    <table border="1" id="tabelaMensagens">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Mensagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Linhas da tabela serão adicionadas dinamicamente aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            // Obtém as mensagens armazenadas (a partir da função obterMensagens())
+            var mensagens = obterMensagens();
+
+            // Verifica se existem mensagens
+            if (mensagens.length > 0) {
+                // Para cada mensagem, adiciona uma linha à tabela
+                mensagens.forEach(function(mensagem) {
+                    $('#tabelaMensagens tbody').append(
+                        `<tr>
+                            <td>${mensagem.nome}</td>
+                            <td>${mensagem.email}</td>
+                            <td>${mensagem.mensagem}</td>
+                        </tr>`
+                    );
+                });
+            } else {
+                // Caso não haja mensagens, exibe uma mensagem na tabela
+                $('#tabelaMensagens tbody').append('<tr><td colspan="3">Nenhuma mensagem recebida.</td></tr>');
+            }
+        });
+    </script>
+</body>
+</html>
